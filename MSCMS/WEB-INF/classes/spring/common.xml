@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+      <!--
+      <property name="url" value="jdbc:mysql://23.253.167.26:3306/looq_purchase" />
+      <property name="username" value="root" />
+      <property name="password" value="LooQ!w2e3r4" />
+      -->
+      <property name="url" value="jdbc:mysql://localhost:3306/cms" />
+      <property name="username" value="root" />
+      <property name="password" value="root" />
+
+      <property name="initialSize" value="1"/>
+      <property name="maxActive" value="20"/>
+      <property name="maxIdle" value="3"/>
+      <property name="minIdle" value="2"/>
+      <property name="testOnBorrow" value="true"/>
+      <property name="testOnReturn" value="true"/>
+      <property name="testWhileIdle" value="true"/>
+      <property name="validationQuery" value="SELECT 1"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+   		<property name="dataSource" ref="dataSource"></property>  
+	</bean> 
+	
+	 
+	<!-- 声明使用注解式事务 -->  
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <bean id="jdbcTemplate"	class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+    
+    
+    <context:component-scan base-package="com.mstanford.cms.service" />      
+</beans>

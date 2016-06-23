@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="action" namespace="/" extends="struts-default">
+		<action name="login" class="com.mstanford.cms.action.LoginAction">
+        	<result name="success">index.jsp</result>
+            <result name="login" type="redirect">/login.htm</result>
+        </action>
+        <action name="logout" class="com.mstanford.cms.action.LogoutAction">
+            <result name="success" type="redirect">/login.htm</result>            
+        </action>
+        <action name="applogin" class="com.mstanford.cms.action.UserAction" method="appLogin">
+        </action>
+        <action name="appregister" class="com.mstanford.cms.action.UserAction" method="appRegister">
+        </action>
+        <action name="modifyavatar" class="com.mstanford.cms.action.UserAction" method="modifyAvatar">
+        </action>
+        <action name="getnews" class="com.mstanford.cms.action.NewsAction" method="queryByPage">
+        </action>
+        <action name="getnextnews" class="com.mstanford.cms.action.NewsAction" method="queryNextNews">
+        </action>
+        <action name="cachenews" class="com.mstanford.cms.action.NewsAction" method="cacheNews">
+        </action>
+        <action name="savenews" class="com.mstanford.cms.action.NewsAction" method="saveNews">
+        </action>
+        <action name="getnewsdetail" class="com.mstanford.cms.action.NewsAction" method="getNewsDetail">
+        </action>
+	</package>
+</struts>

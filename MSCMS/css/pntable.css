@@ -1,0 +1,5 @@
+.pntb{border:1px solid #99BBE8;}
+.pntb td{border:dotted #ccc;border-width:0 0 1px 0;padding:5px;font-size:12px}
+.pntb th{background:#e0ecff;border:solid #99BBE8;border-width:0 1px 1px 0;color:#416aa3;font-size:12px}
+.pntb .clearbd{border-bottom:none}
+input,select{font-size:12px}
